@@ -1,13 +1,13 @@
 // This is your test secret API key.
-const stripe = require("stripe")(
-  "sk_test_51P41HrSGpJIMQvEFqL1v0NAHg8dN3EU3AJCcEnz4dqiXSKk1IYpWxCFn2IF48bTLThE6rExmtYssu6cxS0sHiTNH00BWy5oVez"
-);
+const dotenv = require("dotenv");
+dotenv.config();
+const stripe = require("stripe")(process.env.CLIENT_SECRET_KEY);
 const express = require("express");
 const app = express();
 app.use(express.static("public"));
 
 const YOUR_DOMAIN = "http://localhost:3000";
-
+console.log(process.env.CLIENT_SECRET_KEY);
 app.post("/create-checkout-session", async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     ui_mode: "embedded",
@@ -20,7 +20,9 @@ app.post("/create-checkout-session", async (req, res) => {
           product_data: {
             name: "T-shirt",
             description: "Comfortable cotton t-shirt",
-            images: ["https://example.com/t-shirt.png"],
+            images: [
+              "https://uniform7-static.myshopblocks.com/images/2021/06/contain/2048x2048/0561ca0e8aa2b00b8629b0fa23bf2519.jpg",
+            ],
           },
         },
         quantity: 1,

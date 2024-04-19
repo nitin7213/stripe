@@ -17,7 +17,6 @@ import {
 const stripePromise = loadStripe(
   "pk_test_51P41HrSGpJIMQvEFkdqdrGqbYprBX6fgOFIF0IsLfmoutBfjrERenK1JT0rE5h0o8civqM7hzYJEXBEoSBCY1LtZ00vVPD1IfK"
 );
-
 const CheckoutForm = () => {
   const fetchClientSecret = useCallback(() => {
     // Create a Checkout Session
